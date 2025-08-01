@@ -17,19 +17,21 @@
 <a href="about.html" target="_blank" style="font-size: 10px;">開発者情報はこちら</a>
 
 <!-- ▼ ダミー広告エリア（i-mobile風） -->
-<div id="dummy-ad" style="
+<div id="imobile_ad_container" style="
     position: fixed;
     bottom: 0;
     width: 100%;
-    height: 50px;
+    height: 60px;
     background-color: #ccc;
-    color: #000;
-    text-align: center;
-    line-height: 50px;
-    font-size: 16px;
     z-index: 9999;
 ">
-    【広告】ここにi-mobileのバナー広告が表示されます
+    <div style="position: absolute; right: 5px; top: 5px; cursor: pointer;"
+         onclick="document.getElementById('imobile_ad_container').style.display='none';">
+        ✕
+    </div>
+    <div style="text-align: center; line-height: 60px;">
+        【広告】ここにバナー広告が表示されます
+    </div>
 </div>
 
 <!-- ▲ -->
