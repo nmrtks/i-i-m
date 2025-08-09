@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Interactive Images and Models — Learn visually with interactive 3D and 2D content</title>
+  <meta name="description" content="Interactive Images and Models — a learning hub with interactive 3D and 2D content (Anatomy, Kinematics, Mechanics)." />
+  <meta name="author" content="Interactive Images and Models" />
+  <meta name="robots" content="index, follow" />
+
+  <style>
+    /* Basic reset & layout */
+    :root{
+      --max-w:1100px;
+      --gap:18px;
+      --accent:#0b6efd;
+      --muted:#666;
+      --card-bg:#fff;
+      --page-bg:#f7f8fb;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:var(--page-bg);
+      color:#111;
+      line-height:1.4;
+      -webkit-font-smoothing:antialiased;
+    }
+    .wrap{
+      max-width:var(--max-w);
+      margin:20px auto;
+      padding:20px;
+    }
+
+    header.site-header{
+      display:flex;
+      gap:16px;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:14px;
+    }
+    .branding{
+      display:flex;
+      gap:12px;
+      align-items:baseline;
+    }
+    .site-title{
+      font-size:20px;
+      font-weight:700;
+      margin:0;
+    }
+    .tagline{
+      font-size:13px;
+      color:var(--muted);
+      margin:0;
+    }
+
+    /* Top ad */
+    .ad-top{
+      width:100%;
+      background:linear-gradient(90deg,#eef2ff,#ffffff);
+      border:1px dashed #cfd8ff;
+      padding:12px;
+      text-align:center;
+      margin:12px 0;
+      color:#4b5563;
+      border-radius:8px;
+    }
+
+    /* layout: main + sidebar */
+    .content-area{
+      display:grid;
+      grid-template-columns: 1fr 300px;
+      gap:var(--gap);
+      align-items:start;
+    }
+
+    main{
+      background:transparent;
+    }
+
+    /* search */
+    .search-box{
+      display:flex;
+      gap:8px;
+      margin-bottom:12px;
+    }
+    .search-box input[type="search"]{
+      flex:1;
+      padding:10px 12px;
+      border-radius:8px;
+      border:1px solid #d6d9e6;
+      font-size:14px;
+    }
+    .search-box button{
+      padding:10px 14px;
+      border-radius:8px;
+      border:0;
+      background:var(--accent);
+      color:white;
+      font-weight:600;
+      cursor:pointer;
+    }
+
+    /* categories */
+    .category{
+      margin-bottom:22px;
+    }
+    .category h2{
+      margin:6px 0 10px;
+      font-size:18px;
+      border-left:4px solid var(--accent);
+      padding-left:10px;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap:12px;
+    }
+    .card{
+      background:var(--card-bg);
+      border-radius:10px;
+      box-shadow:0 1px 4px rgba(15,20,30,0.04);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      min-height:120px;
+      border:1px solid #eef0f6;
+    }
+    .thumb{
+      height:140px;
+      background:#e9eefc;
+      display:block;
+      object-fit:cover;
+      width:100%;
+    }
+    .card-body{
+      padding:10px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      flex:1;
+    }
+    .card h3{
+      margin:0;
+      font-size:15px;
+    }
+    .card p{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+      flex:1;
+    }
+    .card a.open{
+      margin-top:8px;
+      text-decoration:none;
+      font-weight:600;
+      font-size:13px;
+      color:var(--accent);
+    }
+
+    /* sidebar */
+    aside.sidebar{
+      position:sticky;
+      top:20px;
+      align-self:start;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .ad-side, .ad-bottom{
+      border-radius:8px;
+      padding:12px;
+      text-align:center;
+      border:1px dashed #e0e6ff;
+      background:linear-gradient(180deg,#fff,#fbfdff);
+      color:#3f4a63;
+    }
+    .categories-list{
+      background:white;
+      padding:10px;
+      border-radius:8px;
+      border:1px solid #eef0f6;
+    }
+    .categories-list ul{list-style:none;padding:0;margin:0}
+    .categories-list li{padding:8px 6px;border-bottom:1px solid #f1f4fb}
+    .categories-list li:last-child{border-bottom:none}
+    .categories-list a{color:var(--accent);text-decoration:none;font-weight:600;font-size:14px}
+
+    footer.site-footer{
+      margin-top:22px;
+      padding:14px;
+      text-align:center;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    /* responsive */
+    @media (max-width:900px){
+      .content-area{grid-template-columns:1fr}
+      aside.sidebar{position:static}
+    }
+
+  </style>
+</head>
+<body>
+  <div class="wrap" role="document">
+    <header class="site-header" role="banner">
+      <div class="branding" aria-hidden="false">
+        <div>
+          <h1 class="site-title">Interactive Images and Models</h1>
+          <p class="tagline">Learn visually with interactive 3D and 2D content</p>
+        </div>
+      </div>
+
+      <div style="text-align:right;">
+        <!-- developer / contact info (helpful for ad reviews) -->
+        <p style="margin:0;font-size:13px;color:var(--muted)">Contact: <a href="mailto:contact@example.com">contact@example.com</a></p>
+      </div>
+    </header>
+
+    <!-- Top ad placeholder: replace with ad tag (i-mobile / AdSense) -->
+    <div class="ad-top" role="complementary" aria-label="Advertisement (top)">
+      <!-- Replace this div with your ad network's script / tag. -->
+      <strong>Advertisement</strong><br />
+      (Top banner — replace with i-mobile / AdSense tag)
+    </div>
+
+    <div class="content-area">
+      <main>
+        <!-- Search -->
+        <div class="search-box" role="search" aria-label="Search content">
+          <input id="q" type="search" placeholder="Search titles or categories (e.g. elbow, projectile)..." />
+          <button id="clear">Clear</button>
+        </div>
+
+<!-- Category: Anatomy -->
+<section class="category" data-category="Anatomy" id="Anatomy">
+  <h2>Anatomy</h2>
+  <div class="cards">
+    <article class="card" data-title="Elbow Joint Model" data-category="Anatomy">
+      <a href="elbow-joint.html">
+        <img class="thumb" src="thumb1.jpg" alt="Elbow Joint Model thumbnail" />
+      </a>
+      <div class="card-body">
+        <h3>
+          <a class="open" href="elbow-joint.html" aria-label="Open Elbow Joint Model">Elbow Joint Model</a>
+        </h3>
+        <p>3D model showing elbow flexion and extension — interactive view for learning joint movement.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- Category: Kinematics -->
+<section class="category" data-category="Kinematics" id="Kinematics">
+  <h2>Kinematics</h2>
+  <div class="cards">
+    <article class="card" data-title="Projectile Motion" data-category="Kinematics">
+      <a href="projectile-motion.html">
+        <img class="thumb" src="thumb2.jpg" alt="Projectile Motion thumbnail" />
+      </a>
+      <div class="card-body">
+        <h3>
+          <a class="open" href="projectile-motion.html" aria-label="Open Projectile Motion simulation">Projectile Motion</a>
+        </h3>
+        <p>Interactive simulation of projectile trajectory — adjust velocity and angle to observe paths.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- Category: Mechanics -->
+<section class="category" data-category="Mechanics" id="Mechanics">
+  <h2>Mechanics</h2>
+  <div class="cards">
+    <article class="card" data-title="Pulley System" data-category="Mechanics">
+      <a href="pulley-system.html">
+        <img class="thumb" src="thumb3.jpg" alt="Pulley System thumbnail" />
+      </a>
+      <div class="card-body">
+        <h3>
+          <a class="open" href="pulley-system.html" aria-label="Open Pulley System demo">Pulley System</a>
+        </h3>
+        <p>Demonstrates mechanical advantage in pulleys — manipulate rope and load to learn forces.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+        <footer class="site-footer" role="contentinfo">
+          <div>© 2025 Interactive Images and Models</div>
+          <div>Built for educational use. For inquiries: <a href="mailto:contact@example.com">contact@example.com</a></div>
+        </footer>
+      </main>
+
+      <aside class="sidebar" aria-label="Sidebar">
+        <div class="categories-list" aria-hidden="false">
+          <strong style="display:block;margin-bottom:8px">Categories</strong>
+          <ul>
+            <li><a href="#Anatomy">Anatomy</a></li>
+            <li><a href="#Kinematics">Kinematics</a></li>
+            <li><a href="#Mechanics">Mechanics</a></li>
+          </ul>
+        </div>
+
+        <!-- Side ad placeholder -->
+        <div class="ad-side" role="complementary" aria-label="Advertisement (side)">
+          <strong>Advertisement</strong><br />(Sidebar — replace with ad tag)
+        </div>
+
+        <!-- Bottom ad placeholder (in sidebar) -->
+        <div class="ad-bottom" role="complementary" aria-label="Advertisement (bottom)">
+          <strong>Advertisement</strong><br />(Footer/Bottom ad)
+        </div>
+      </aside>
+    </div>
+
+  </div>
+
+  <script>
+    // Simple client-side search/filter for cards
+    (function(){
+      const input = document.getElementById('q');
+      const clearBtn = document.getElementById('clear');
+      const cards = Array.from(document.querySelectorAll('.card'));
+
+      function normalize(s){
+        return (s||'').toLowerCase();
+      }
+      function filter(){
+        const q = normalize(input.value.trim());
+        cards.forEach(card=>{
+          const title = normalize(card.dataset.title);
+          const cat = normalize(card.dataset.category);
+          const matches = q === '' || title.includes(q) || cat.includes(q);
+          card.style.display = matches ? '' : 'none';
+        });
+      }
+      input.addEventListener('input', filter);
+      clearBtn.addEventListener('click', function(e){
+        e.preventDefault();
+        input.value = '';
+        filter();
+        input.focus();
+      });
+
+      // Allow Enter to focus first visible card (optional small UX)
+      input.addEventListener('keydown', function(e){
+        if(e.key === 'Enter'){
+          const first = cards.find(c => c.style.display !== 'none');
+          if(first){
+            const link = first.querySelector('a.open');
+            if(link) link.focus();
+          }
+        }
+      });
+
+      // Simple accessibility improvement: ensure images have alt
+      document.querySelectorAll('.thumb').forEach(img=>{
+        if(!img.getAttribute('alt')) img.alt = '';
+      });
+
+    })();
+  </script>
+</body>
+</html>
