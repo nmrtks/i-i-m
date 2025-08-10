@@ -5,204 +5,50 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Interactive Images and Models — Learn visually with interactive 3D and 2D content</title>
   <meta name="description" content="Interactive Images and Models — a learning hub with interactive 3D and 2D content (Anatomy, Kinematics, Mechanics)." />
-  <meta name="author" content="Interactive Images and Models" />
-  <meta name="robots" content="index, follow" />
-
   <style>
-    /* Basic reset & layout */
-    :root{
-      --max-w:1100px;
-      --gap:18px;
-      --accent:#0b6efd;
-      --muted:#666;
-      --card-bg:#fff;
-      --page-bg:#f7f8fb;
-    }
+    :root{ --max-w:1100px; --gap:18px; --accent:#0b6efd; --muted:#666; --card-bg:#fff; --page-bg:#f7f8fb; }
     *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background:var(--page-bg);
-      color:#111;
-      line-height:1.4;
-      -webkit-font-smoothing:antialiased;
-    }
-    .wrap{
-      max-width:var(--max-w);
-      margin:20px auto;
-      padding:20px;
-    }
+    body{margin:0;font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:var(--page-bg); color:#111;}
+    .wrap{max-width:var(--max-w);margin:20px auto;padding:20px;}
+    header.site-header{display:flex;gap:16px;align-items:center;justify-content:space-between;margin-bottom:14px;}
+    .branding{display:flex;gap:12px;align-items:baseline;}
+    .site-title{font-size:20px;font-weight:700;margin:0;}
+    .tagline{font-size:13px;color:var(--muted);margin:0;}
 
-    header.site-header{
-      display:flex;
-      gap:16px;
-      align-items:center;
-      justify-content:space-between;
-      margin-bottom:14px;
-    }
-    .branding{
-      display:flex;
-      gap:12px;
-      align-items:baseline;
-    }
-    .site-title{
-      font-size:20px;
-      font-weight:700;
-      margin:0;
-    }
-    .tagline{
-      font-size:13px;
-      color:var(--muted);
-      margin:0;
-    }
+    .ad-top{width:100%;background:linear-gradient(90deg,#eef2ff,#ffffff);border:1px dashed #cfd8ff;padding:12px;text-align:center;margin:12px 0;color:#4b5563;border-radius:8px;}
 
-    /* Top ad */
-    .ad-top{
-      width:100%;
-      background:linear-gradient(90deg,#eef2ff,#ffffff);
-      border:1px dashed #cfd8ff;
-      padding:12px;
-      text-align:center;
-      margin:12px 0;
-      color:#4b5563;
-      border-radius:8px;
-    }
+    .content-area{display:grid;grid-template-columns: 1fr 300px;gap:var(--gap);align-items:start;}
+    main{background:transparent;}
 
-    /* layout: main + sidebar */
-    .content-area{
-      display:grid;
-      grid-template-columns: 1fr 300px;
-      gap:var(--gap);
-      align-items:start;
-    }
+    .search-box{display:flex;gap:8px;margin-bottom:12px;}
+    .search-box input[type="search"]{flex:1;padding:10px 12px;border-radius:8px;border:1px solid #d6d9e6;font-size:14px;}
+    .search-box button{padding:10px 14px;border-radius:8px;border:0;background:var(--accent);color:white;font-weight:600;cursor:pointer;}
 
-    main{
-      background:transparent;
-    }
+    .category{margin-bottom:22px;}
+    .category h2{margin:6px 0 10px;font-size:18px;border-left:4px solid var(--accent);padding-left:10px;}
 
-    /* search */
-    .search-box{
-      display:flex;
-      gap:8px;
-      margin-bottom:12px;
-    }
-    .search-box input[type="search"]{
-      flex:1;
-      padding:10px 12px;
-      border-radius:8px;
-      border:1px solid #d6d9e6;
-      font-size:14px;
-    }
-    .search-box button{
-      padding:10px 14px;
-      border-radius:8px;
-      border:0;
-      background:var(--accent);
-      color:white;
-      font-weight:600;
-      cursor:pointer;
-    }
+    .card{background:var(--card-bg);border-radius:10px;box-shadow:0 1px 4px rgba(15,20,30,0.04);overflow:hidden;display:flex;flex-direction:column;min-height:80px;border:1px solid #eef0f6;padding:12px;margin-bottom:12px;}
+    .card h3{margin:0;font-size:15px;}
+    .card p{margin:6px 0 0;color:var(--muted);font-size:13px;}
 
-    /* categories */
-    .category{
-      margin-bottom:22px;
-    }
-    .category h2{
-      margin:6px 0 10px;
-      font-size:18px;
-      border-left:4px solid var(--accent);
-      padding-left:10px;
-    }
+    a.external { color: var(--accent); text-decoration:none; font-weight:600; }
+    .external-icon { margin-left:6px; font-size:0.9em; vertical-align:baseline; }
 
-    .cards{
-      display:grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap:12px;
-    }
-    .card{
-      background:var(--card-bg);
-      border-radius:10px;
-      box-shadow:0 1px 4px rgba(15,20,30,0.04);
-      overflow:hidden;
-      display:flex;
-      flex-direction:column;
-      min-height:120px;
-      border:1px solid #eef0f6;
-    }
-    .thumb{
-      height:140px;
-      background:#e9eefc;
-      display:block;
-      object-fit:cover;
-      width:100%;
-    }
-    .card-body{
-      padding:10px;
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-      flex:1;
-    }
-    .card h3{
-      margin:0;
-      font-size:15px;
-    }
-    .card p{
-      margin:0;
-      color:var(--muted);
-      font-size:13px;
-      flex:1;
-    }
-    .card a.open{
-      margin-top:8px;
-      text-decoration:none;
-      font-weight:600;
-      font-size:13px;
-      color:var(--accent);
-    }
-
-    /* sidebar */
-    aside.sidebar{
-      position:sticky;
-      top:20px;
-      align-self:start;
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-    }
-    .ad-side, .ad-bottom{
-      border-radius:8px;
-      padding:12px;
-      text-align:center;
-      border:1px dashed #e0e6ff;
-      background:linear-gradient(180deg,#fff,#fbfdff);
-      color:#3f4a63;
-    }
-    .categories-list{
-      background:white;
-      padding:10px;
-      border-radius:8px;
-      border:1px solid #eef0f6;
-    }
+    aside.sidebar{position:sticky;top:20px;align-self:start;display:flex;flex-direction:column;gap:12px;}
+    .categories-list{background:white;padding:10px;border-radius:8px;border:1px solid #eef0f6;}
     .categories-list ul{list-style:none;padding:0;margin:0}
     .categories-list li{padding:8px 6px;border-bottom:1px solid #f1f4fb}
     .categories-list li:last-child{border-bottom:none}
     .categories-list a{color:var(--accent);text-decoration:none;font-weight:600;font-size:14px}
 
-    footer.site-footer{
-      margin-top:22px;
-      padding:14px;
-      text-align:center;
-      color:var(--muted);
-      font-size:13px;
-    }
+    /* hide side ad entirely so only top & bottom ads remain */
+    .ad-side { display: none !important; }
 
-    /* responsive */
-    @media (max-width:900px){
-      .content-area{grid-template-columns:1fr}
-      aside.sidebar{position:static}
-    }
+    .ad-bottom{border-radius:8px;padding:12px;text-align:center;border:1px dashed #e0e6ff;background:linear-gradient(180deg,#fff,#fbfdff);color:#3f4a63;margin-top:18px;}
 
+    footer.site-footer{margin-top:22px;padding:14px;text-align:center;color:var(--muted);font-size:13px;}
+
+    @media (max-width:900px){ .content-area{grid-template-columns:1fr} .ad-top,.ad-bottom{font-size:14px} }
   </style>
 </head>
 <body>
@@ -216,79 +62,63 @@
       </div>
 
       <div style="text-align:right;">
-        <!-- developer / contact info (helpful for ad reviews) -->
         <p style="margin:0;font-size:13px;color:var(--muted)">Contact: <a href="mailto:contact@example.com">contact@example.com</a></p>
       </div>
     </header>
 
-    <!-- Top ad placeholder: replace with ad tag (i-mobile / AdSense) -->
+    <!-- Top ad placeholder -->
     <div class="ad-top" role="complementary" aria-label="Advertisement (top)">
-      <!-- Replace this div with your ad network's script / tag. -->
-      <strong>Advertisement</strong><br />
-      (Top banner — replace with i-mobile / AdSense tag)
+      <strong>Advertisement</strong><br />(Top banner — replace with i-mobile / AdSense tag)
     </div>
 
     <div class="content-area">
       <main>
-        <!-- Search -->
+        <!-- (optional) small search/clear UI similar to live site -->
         <div class="search-box" role="search" aria-label="Search content">
-          <input id="q" type="search" placeholder="Search titles or categories (e.g. elbow, projectile)..." />
+          <input id="q" type="search" placeholder="Search titles or categories..." />
           <button id="clear">Clear</button>
         </div>
 
-<!-- Category: Anatomy -->
-<section class="category" data-category="Anatomy" id="Anatomy">
-  <h2>Anatomy</h2>
-  <div class="cards">
-    <article class="card" data-title="Elbow Joint Model" data-category="Anatomy">
-      <a href="/elbow_forearm/index.html">
-        <img class="thumb" src="/elbow_forearm/thumbnail.png" alt="Elbow Joint Model thumbnail" />
-      </a>
-      <div class="card-body">
-        <h3>
-          <a class="open" href="/elbow_forearm/index.html" aria-label="Open Elbow Joint Model">Elbow Joint Model</a>
-        </h3>
-        <p>3D model showing elbow flexion and extension — interactive view for learning joint movement.</p>
-      </div>
-    </article>
-  </div>
-</section>
+        <!-- Anatomy -->
+        <section class="category" id="Anatomy">
+          <h2>Anatomy</h2>
+          <div class="card" data-title="Elbow Joint Model" data-category="Anatomy">
+            <h3>
+              <a class="external" href="elbow_forearm/" target="_blank" rel="noopener noreferrer" aria-label="Open Elbow Joint Model (opens in new tab)">
+                Elbow Joint Model<span class="external-icon" aria-hidden="true">↗</span>
+              </a>
+            </h3>
+            <p>3D model showing elbow flexion and extension — interactive view for learning joint movement.</p>
+          </div>
+        </section>
 
-<!-- Category: Kinematics -->
-<section class="category" data-category="Kinematics" id="Kinematics">
-  <h2>Kinematics</h2>
-  <div class="cards">
-    <article class="card" data-title="Projectile Motion" data-category="Kinematics">
-      <a href="/gaitcycle/index.html">
-        <img class="thumb" src="/gaitcycle/thumbnail.png" alt="Projectile Motion thumbnail" />
-      </a>
-      <div class="card-body">
-        <h3>
-          <a class="open" href="/gaitcycle/index.html" aria-label="Open Projectile Motion simulation">Projectile Motion</a>
-        </h3>
-        <p>Interactive simulation of projectile trajectory — adjust velocity and angle to observe paths.</p>
-      </div>
-    </article>
-  </div>
-</section>
+        <!-- Kinematics -->
+        <section class="category" id="Kinematics">
+          <h2>Kinematics</h2>
+          <div class="card" data-title="Projectile Motion" data-category="Kinematics">
+            <h3>
+              <!-- NOTE: this page currently links to the gaitcycle path on the live site -->
+              <a class="external" href="gaitcycle/" target="_blank" rel="noopener noreferrer" aria-label="Open Projectile Motion (opens in new tab)">
+                Projectile Motion<span class="external-icon" aria-hidden="true">↗</span>
+              </a>
+            </h3>
+            <p>Interactive simulation of projectile trajectory — adjust velocity and angle to observe paths.</p>
+          </div>
+        </section>
 
-<!-- Category: Mechanics -->
-<section class="category" data-category="Mechanics" id="Mechanics">
-  <h2>Mechanics</h2>
-  <div class="cards">
-    <article class="card" data-title="Pulley System" data-category="Mechanics">
-      <a href="/gaitcycle/index.html">
-        <img class="thumb" src="/gaitcycle/thumbnail.png" alt="Pulley System thumbnail" />
-      </a>
-      <div class="card-body">
-        <h3>
-          <a class="open" href="/gaitcycle/index.html" aria-label="Open Pulley System demo">Pulley System</a>
-        </h3>
-        <p>Demonstrates mechanical advantage in pulleys — manipulate rope and load to learn forces.</p>
-      </div>
-    </article>
-  </div>
-</section>
+        <!-- Mechanics -->
+        <section class="category" id="Mechanics">
+          <h2>Mechanics</h2>
+          <div class="card" data-title="Pulley System" data-category="Mechanics">
+            <h3>
+              <!-- NOTE: live index uses the same link id for this item -->
+              <a class="external" href="gaitcycle/" target="_blank" rel="noopener noreferrer" aria-label="Open Pulley System (opens in new tab)">
+                Pulley System<span class="external-icon" aria-hidden="true">↗</span>
+              </a>
+            </h3>
+            <p>Demonstrates mechanical advantage in pulleys — manipulate rope and load to learn forces.</p>
+          </div>
+        </section>
 
         <footer class="site-footer" role="contentinfo">
           <div>© 2025 Interactive Images and Models</div>
@@ -306,12 +136,12 @@
           </ul>
         </div>
 
-        <!-- Side ad placeholder -->
+        <!-- Side ad: kept in HTML but hidden by CSS -->
         <div class="ad-side" role="complementary" aria-label="Advertisement (side)">
           <strong>Advertisement</strong><br />(Sidebar — replace with ad tag)
         </div>
 
-        <!-- Bottom ad placeholder (in sidebar) -->
+        <!-- Bottom ad (in sidebar area) -->
         <div class="ad-bottom" role="complementary" aria-label="Advertisement (bottom)">
           <strong>Advertisement</strong><br />(Footer/Bottom ad)
         </div>
@@ -321,15 +151,12 @@
   </div>
 
   <script>
-    // Simple client-side search/filter for cards
+    // small helper: add simple search (same behaviour as earlier)
     (function(){
       const input = document.getElementById('q');
       const clearBtn = document.getElementById('clear');
       const cards = Array.from(document.querySelectorAll('.card'));
-
-      function normalize(s){
-        return (s||'').toLowerCase();
-      }
+      function normalize(s){ return (s||'').toLowerCase(); }
       function filter(){
         const q = normalize(input.value.trim());
         cards.forEach(card=>{
@@ -339,30 +166,10 @@
           card.style.display = matches ? '' : 'none';
         });
       }
-      input.addEventListener('input', filter);
-      clearBtn.addEventListener('click', function(e){
-        e.preventDefault();
-        input.value = '';
-        filter();
-        input.focus();
-      });
-
-      // Allow Enter to focus first visible card (optional small UX)
-      input.addEventListener('keydown', function(e){
-        if(e.key === 'Enter'){
-          const first = cards.find(c => c.style.display !== 'none');
-          if(first){
-            const link = first.querySelector('a.open');
-            if(link) link.focus();
-          }
-        }
-      });
-
-      // Simple accessibility improvement: ensure images have alt
-      document.querySelectorAll('.thumb').forEach(img=>{
-        if(!img.getAttribute('alt')) img.alt = '';
-      });
-
+      if(input){
+        input.addEventListener('input', filter);
+        clearBtn.addEventListener('click', function(e){ e.preventDefault(); input.value=''; filter(); input.focus(); });
+      }
     })();
   </script>
 </body>
