@@ -27,11 +27,33 @@
     .category{margin-bottom:22px;}
     .category h2{margin:6px 0 10px;font-size:18px;border-left:4px solid var(--accent);padding-left:10px;}
 
-    .card{background:var(--card-bg);border-radius:10px;box-shadow:0 1px 4px rgba(15,20,30,0.04);overflow:hidden;display:flex;flex-direction:column;min-height:80px;border:1px solid #eef0f6;padding:12px;margin-bottom:12px;}
+    .card{background:var(--card-bg);border-radius:10px;box-shadow:0 1px 4px rgba(15,20,30,0.04);overflow:hidden;min-height:80px;border:1px solid #eef0f6;margin-bottom:12px;}
+    .card a.card-link {
+      display: flex;
+      flex-direction: row; /* 横並び */
+      align-items: flex-start;
+      height: 100%;
+      color: inherit;
+      text-decoration: none;
+    }
+    .card img {
+      width: 20vw; /* 画面幅の20% */
+      height: auto;
+      flex-shrink: 0;
+      display: block;
+      border-radius: 8px 0 0 8px;
+      object-fit: cover;
+    }
+    .card-content {
+      padding: 12px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
     .card h3{margin:0;font-size:15px;}
-    .card p{margin:6px 0 0;color:var(--muted);font-size:13px;}
+    .card p{margin:6px 0 0;color:var(--muted);font-size:13px;flex-grow:1;}
 
-    a.external { color: var(--accent); text-decoration:none; font-weight:600; }
+    a.external { color: var(--accent); font-weight:600; }
     .external-icon { margin-left:6px; font-size:0.9em; vertical-align:baseline; }
 
     aside.sidebar{position:sticky;top:20px;align-self:start;display:flex;flex-direction:column;gap:12px;}
@@ -48,13 +70,23 @@
 
     footer.site-footer{margin-top:22px;padding:14px;text-align:center;color:var(--muted);font-size:13px;}
 
-    @media (max-width:900px){ .content-area{grid-template-columns:1fr} .ad-top,.ad-bottom{font-size:14px} }
+    @media (max-width:900px) {
+      .content-area{grid-template-columns:1fr}
+      .ad-top,.ad-bottom{font-size:14px}
+      .card a.card-link {
+        flex-direction: column; /* モバイルで縦並び */
+      }
+      .card img {
+        width: 100%; /* モバイルで全幅 */
+        border-radius: 8px 8px 0 0;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="wrap" role="document">
     <header class="site-header" role="banner">
-      <div class="branding" aria-hidden="false">
+      <div class="branding">
         <div>
           <h1 class="site-title">Interactive Images and Models</h1>
           <p class="tagline">Learn visually with interactive 3D and 2D content</p>
@@ -73,7 +105,7 @@
 
     <div class="content-area">
       <main>
-        <!-- (optional) small search/clear UI similar to live site -->
+        <!-- Search -->
         <div class="search-box" role="search" aria-label="Search content">
           <input id="q" type="search" placeholder="Search titles or categories..." />
           <button id="clear">Clear</button>
@@ -83,12 +115,13 @@
         <section class="category" id="Anatomy">
           <h2>Anatomy</h2>
           <div class="card" data-title="Elbow Joint Model" data-category="Anatomy">
-            <h3>
-              <a class="external" href="elbow_forearm/" target="_blank" rel="noopener noreferrer" aria-label="Open Elbow Joint Model (opens in new tab)">
-                Elbow Joint Model<span class="external-icon" aria-hidden="true">↗</span>
-              </a>
-            </h3>
-            <p>3D model showing elbow flexion and extension — interactive view for learning joint movement.</p>
+            <a class="card-link" href="elbow_forearm/" target="_blank" rel="noopener noreferrer" aria-label="Open Elbow Joint Model (opens in new tab)">
+              <img src="elbow_forearm/thumbnail.png" alt="Thumbnail for Elbow Joint Model" />
+              <div class="card-content">
+                <h3>Elbow Joint Model<span class="external-icon">↗</span></h3>
+                <p>3D model showing elbow flexion and extension — interactive view for learning joint movement.</p>
+              </div>
+            </a>
           </div>
         </section>
 
@@ -96,13 +129,13 @@
         <section class="category" id="Kinematics">
           <h2>Kinematics</h2>
           <div class="card" data-title="Projectile Motion" data-category="Kinematics">
-            <h3>
-              <!-- NOTE: this page currently links to the gaitcycle path on the live site -->
-              <a class="external" href="gaitcycle/" target="_blank" rel="noopener noreferrer" aria-label="Open Projectile Motion (opens in new tab)">
-                Projectile Motion<span class="external-icon" aria-hidden="true">↗</span>
-              </a>
-            </h3>
-            <p>Interactive simulation of projectile trajectory — adjust velocity and angle to observe paths.</p>
+            <a class="card-link" href="gaitcycle/" target="_blank" rel="noopener noreferrer" aria-label="Open Projectile Motion (opens in new tab)">
+              <img src="gaitcycle/thumbnail.png" alt="Thumbnail for Projectile Motion" />
+              <div class="card-content">
+                <h3>Projectile Motion<span class="external-icon">↗</span></h3>
+                <p>Interactive simulation of projectile trajectory — adjust velocity and angle to observe paths.</p>
+              </div>
+            </a>
           </div>
         </section>
 
@@ -110,13 +143,13 @@
         <section class="category" id="Mechanics">
           <h2>Mechanics</h2>
           <div class="card" data-title="Pulley System" data-category="Mechanics">
-            <h3>
-              <!-- NOTE: live index uses the same link id for this item -->
-              <a class="external" href="gaitcycle/" target="_blank" rel="noopener noreferrer" aria-label="Open Pulley System (opens in new tab)">
-                Pulley System<span class="external-icon" aria-hidden="true">↗</span>
-              </a>
-            </h3>
-            <p>Demonstrates mechanical advantage in pulleys — manipulate rope and load to learn forces.</p>
+            <a class="card-link" href="gaitcycle/" target="_blank" rel="noopener noreferrer" aria-label="Open Pulley System (opens in new tab)">
+              <img src="gaitcycle/thumbnail.png" alt="Thumbnail for Pulley System" />
+              <div class="card-content">
+                <h3>Pulley System<span class="external-icon">↗</span></h3>
+                <p>Demonstrates mechanical advantage in pulleys — manipulate rope and load to learn forces.</p>
+              </div>
+            </a>
           </div>
         </section>
 
@@ -127,7 +160,7 @@
       </main>
 
       <aside class="sidebar" aria-label="Sidebar">
-        <div class="categories-list" aria-hidden="false">
+        <div class="categories-list">
           <strong style="display:block;margin-bottom:8px">Categories</strong>
           <ul>
             <li><a href="#Anatomy">Anatomy</a></li>
@@ -136,22 +169,20 @@
           </ul>
         </div>
 
-        <!-- Side ad: kept in HTML but hidden by CSS -->
-        <div class="ad-side" role="complementary" aria-label="Advertisement (side)">
+        <!-- Side ad hidden -->
+        <div class="ad-side">
           <strong>Advertisement</strong><br />(Sidebar — replace with ad tag)
         </div>
 
-        <!-- Bottom ad (in sidebar area) -->
+        <!-- Bottom ad -->
         <div class="ad-bottom" role="complementary" aria-label="Advertisement (bottom)">
           <strong>Advertisement</strong><br />(Footer/Bottom ad)
         </div>
       </aside>
     </div>
-
   </div>
 
   <script>
-    // small helper: add simple search (same behaviour as earlier)
     (function(){
       const input = document.getElementById('q');
       const clearBtn = document.getElementById('clear');
