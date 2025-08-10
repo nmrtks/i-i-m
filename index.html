@@ -71,14 +71,30 @@
     footer.site-footer{margin-top:22px;padding:14px;text-align:center;color:var(--muted);font-size:13px;}
 
     @media (max-width:900px) {
-      .content-area{grid-template-columns:1fr}
-      .ad-top,.ad-bottom{font-size:14px}
+      .content-area{grid-template-columns:1fr;}
+      .ad-top,.ad-bottom{font-size:14px;}
       .card a.card-link {
         flex-direction: column; /* モバイルで縦並び */
       }
       .card img {
         width: 100%; /* モバイルで全幅 */
         border-radius: 8px 8px 0 0;
+      }
+      aside.sidebar {
+        order: 2;
+        display: flex;
+        flex-direction: column;
+      }
+      .search-box {
+        order: 1;
+        margin-bottom: 12px;
+      }
+      .categories-list {
+        order: 2;
+        margin-bottom: 18px;
+      }
+      main {
+        order: 3;
       }
     }
   </style>
@@ -105,12 +121,7 @@
 
     <div class="content-area">
       <main>
-        <!-- Search -->
-        <div class="search-box" role="search" aria-label="Search content">
-          <input id="q" type="search" placeholder="Search titles or categories..." />
-          <button id="clear">Clear</button>
-        </div>
-
+        <!-- コンテンツ -->
         <!-- Anatomy -->
         <section class="category" id="Anatomy">
           <h2>Anatomy</h2>
@@ -160,6 +171,11 @@
       </main>
 
       <aside class="sidebar" aria-label="Sidebar">
+        <div class="search-box" role="search" aria-label="Search content">
+          <input id="q" type="search" placeholder="Search titles or categories..." />
+          <button id="clear">Clear</button>
+        </div>
+
         <div class="categories-list">
           <strong style="display:block;margin-bottom:8px">Categories</strong>
           <ul>
