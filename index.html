@@ -38,7 +38,7 @@
       padding: 1.5rem;
     }
     .category {
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
     }
     .category h2 {
       border-bottom: 2px solid #444;
@@ -46,11 +46,22 @@
       margin-bottom: 1rem;
     }
     .item {
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .item img {
+      width: 20%;
+      max-width: 160px;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.6);
     }
     .item a {
       color: #90caf9;
       text-decoration: none;
+      font-size: 1rem;
+      font-weight: bold;
     }
     .item a:hover {
       text-decoration: underline;
@@ -100,17 +111,32 @@
   <main>
     <section id="anatomy" class="category">
       <h2>Anatomy</h2>
-      <div class="item"><a href="elbow_forearm/index.html">Elbow & Forearm Motion</a></div>
+      <div class="item">
+        <a href="elbow_forearm/index.html">
+          <img src="elbow_forearm/thumbnail.png" alt="Elbow & Forearm Thumbnail">
+        </a>
+        <a href="elbow_forearm/index.html">Elbow & Forearm Motion</a>
+      </div>
     </section>
 
     <section id="kinematics" class="category">
       <h2>Kinematics</h2>
-      <div class="item"><a href="pendulum/index.html">Pendulum Simulation</a></div>
+      <div class="item">
+        <a href="pendulum/index.html">
+          <img src="pendulum/thumbnail.png" alt="Pendulum Thumbnail">
+        </a>
+        <a href="pendulum/index.html">Pendulum Simulation</a>
+      </div>
     </section>
 
     <section id="mechanics" class="category">
       <h2>Mechanics</h2>
-      <div class="item"><a href="gear/index.html">Gear Interaction Model</a></div>
+      <div class="item">
+        <a href="gear/index.html">
+          <img src="gear/thumbnail.png" alt="Gear Thumbnail">
+        </a>
+        <a href="gear/index.html">Gear Interaction Model</a>
+      </div>
     </section>
   </main>
 
