@@ -49,11 +49,13 @@
       margin-bottom: 1.5rem;
       display: flex;
       align-items: center;
-      gap: 0.5rem; /* ← ここを変更 */
+      gap: 0.5rem;
     }
     .item img {
       width: 40%;
-      max-width: 240px;
+      max-width: 480px;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
       border-radius: 6px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.6);
     }
@@ -62,9 +64,7 @@
       text-decoration: none;
       font-size: 1rem;
       font-weight: bold;
-    }
-    .item a:hover {
-      text-decoration: underline;
+      align-self: center;
     }
     .dummy-ad {
       width: 100%;
