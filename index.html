@@ -1,224 +1,130 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Interactive Images and Models — Learn visually with interactive 3D and 2D content</title>
-  <meta name="description" content="Interactive Images and Models — a learning hub with interactive 3D and 2D content (Anatomy, Kinematics, Mechanics)." />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Interactive Images and Models</title>
   <style>
-    :root{ --max-w:1100px; --gap:18px; --accent:#0b6efd; --muted:#666; --card-bg:#fff; --page-bg:#f7f8fb; }
-    *{box-sizing:border-box}
-    body{margin:0;font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:var(--page-bg); color:#111;}
-    .wrap{max-width:var(--max-w);margin:20px auto;padding:20px;}
-    header.site-header{display:flex;gap:16px;align-items:center;justify-content:space-between;margin-bottom:14px;}
-    .branding{display:flex;gap:12px;align-items:baseline;}
-    .site-title{font-size:20px;font-weight:700;margin:0;}
-    .tagline{font-size:13px;color:var(--muted);margin:0;}
-
-    .ad-top{width:100%;background:linear-gradient(90deg,#eef2ff,#ffffff);border:1px dashed #cfd8ff;padding:12px;text-align:center;margin:12px 0;color:#4b5563;border-radius:8px;}
-
-    .content-area{display:grid;grid-template-columns: 1fr 300px;gap:var(--gap);align-items:start;}
-    main{background:transparent;}
-
-    .search-box{display:flex;gap:8px;margin-bottom:12px;}
-    .search-box input[type="search"]{flex:1;padding:10px 12px;border-radius:8px;border:1px solid #d6d9e6;font-size:14px;}
-    .search-box button{padding:10px 14px;border-radius:8px;border:0;background:var(--accent);color:white;font-weight:600;cursor:pointer;}
-
-    .category{margin-bottom:22px;}
-    .category h2{margin:6px 0 10px;font-size:18px;border-left:4px solid var(--accent);padding-left:10px;}
-
-    .card{background:var(--card-bg);border-radius:10px;box-shadow:0 1px 4px rgba(15,20,30,0.04);overflow:hidden;min-height:80px;border:1px solid #eef0f6;margin-bottom:12px;}
-    .card a.card-link {
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #121212;
+      color: #f0f0f0;
+      line-height: 1.6;
+    }
+    header {
+      background: #1e1e1e;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+    }
+    nav {
       display: flex;
-      flex-direction: row; /* 横並び */
-      align-items: flex-start;
-      height: 100%;
-      color: inherit;
+      justify-content: center;
+      background: #2c2c2c;
+      padding: 0.5rem;
+    }
+    nav a {
+      color: #f0f0f0;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      color: #00bcd4;
+    }
+    main {
+      padding: 1.5rem;
+    }
+    .category {
+      margin-bottom: 2rem;
+    }
+    .category h2 {
+      border-bottom: 2px solid #444;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .item {
+      margin-bottom: 1.2rem;
+    }
+    .item a {
+      color: #90caf9;
       text-decoration: none;
     }
-    .card img {
-      width: 20vw; /* 画面幅の20% */
-      height: auto;
-      flex-shrink: 0;
-      display: block;
-      border-radius: 8px 0 0 8px;
-      object-fit: cover;
+    .item a:hover {
+      text-decoration: underline;
     }
-    .card-content {
-      padding: 12px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
+    footer {
+      background: #1e1e1e;
+      color: #ccc;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
     }
-    .card h3{margin:0;font-size:15px;}
-    .card p{margin:6px 0 0;color:var(--muted);font-size:13px;flex-grow:1;}
-
-    a.external { color: var(--accent); font-weight:600; }
-    .external-icon { margin-left:6px; font-size:0.9em; vertical-align:baseline; }
-
-    aside.sidebar{position:sticky;top:20px;align-self:start;display:flex;flex-direction:column;gap:12px;}
-    .categories-list{background:white;padding:10px;border-radius:8px;border:1px solid #eef0f6;}
-    .categories-list ul{list-style:none;padding:0;margin:0}
-    .categories-list li{padding:8px 6px;border-bottom:1px solid #f1f4fb}
-    .categories-list li:last-child{border-bottom:none}
-    .categories-list a{color:var(--accent);text-decoration:none;font-weight:600;font-size:14px}
-
-    /* hide side ad entirely so only top & bottom ads remain */
-    .ad-side { display: none !important; }
-
-    .ad-bottom{border-radius:8px;padding:12px;text-align:center;border:1px dashed #e0e6ff;background:linear-gradient(180deg,#fff,#fbfdff);color:#3f4a63;margin-top:18px;}
-
-    footer.site-footer{margin-top:22px;padding:14px;text-align:center;color:var(--muted);font-size:13px;}
-
-    @media (max-width:900px) {
-      .content-area{grid-template-columns:1fr;}
-      .ad-top,.ad-bottom{font-size:14px;}
-      .card a.card-link {
-        flex-direction: column; /* モバイルで縦並び */
-      }
-      .card img {
-        width: 100%; /* モバイルで全幅 */
-        border-radius: 8px 8px 0 0;
-      }
-      aside.sidebar {
-        order: 2;
-        display: flex;
-        flex-direction: column;
-      }
-      .search-box {
-        order: 1;
-        margin-bottom: 12px;
-      }
-      .categories-list {
-        order: 2;
-        margin-bottom: 18px;
-      }
-      main {
-        order: 3;
-      }
+    details {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem 1.5rem;
+      background: #1c1c1c;
+      border-radius: 8px;
+      color: #ddd;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+    details summary {
+      font-weight: bold;
+      color: #fff;
+      outline: none;
+    }
+    details[open] {
+      background: #252525;
+    }
+    details p {
+      margin-top: 0.8rem;
     }
   </style>
 </head>
 <body>
-  <div class="wrap" role="document">
-    <header class="site-header" role="banner">
-      <div class="branding">
-        <div>
-          <h1 class="site-title">Interactive Images and Models (Under Construction)</h1>
-          <p class="tagline">Learn visually with interactive 3D and 2D content</p>
-        </div>
-      </div>
+  <header>
+    <h1>Interactive Images and Models</h1>
+    <p>Learn visually with interactive 3D and 2D content</p>
+  </header>
 
-<!--
-      <div style="text-align:right;">
-        <p style="margin:0;font-size:13px;color:var(--muted)">Contact: <a href="mailto:contact@example.com">contact@example.com</a></p>
-      </div>
--->
-    </header>
-    <!-- Top ad placeholder -->
-    <div class="ad-top" role="complementary" aria-label="Advertisement (top)">
-      <strong>Advertisement</strong><br />(Top banner — replace with i-mobile / AdSense tag)
-    </div>
+  <nav>
+    <a href="#anatomy">Anatomy</a>
+    <a href="#kinematics">Kinematics</a>
+    <a href="#mechanics">Mechanics</a>
+  </nav>
 
-    <div class="content-area">
-      <main>
-        <!-- コンテンツ -->
-        <!-- Anatomy -->
-        <section class="category" id="Anatomy">
-          <h2>Anatomy</h2>
-          <div class="card" data-title="Elbow Joint Model" data-category="Anatomy">
-            <a class="card-link" href="elbow_forearm/" target="_blank" rel="noopener noreferrer" aria-label="Open Elbow Joint Model (opens in new tab)">
-              <img src="elbow_forearm/thumbnail.png" alt="Thumbnail for Elbow Joint Model" />
-              <div class="card-content">
-                <h3>Elbow Joint Model<span class="external-icon">↗</span></h3>
-                <p>3D model showing elbow flexion and extension — interactive view for learning joint movement.</p>
-              </div>
-            </a>
-          </div>
-        </section>
+  <main>
+    <section id="anatomy" class="category">
+      <h2>Anatomy</h2>
+      <div class="item"><a href="elbow_forearm/index.html">Elbow & Forearm Motion</a></div>
+    </section>
 
-        <!-- Kinematics -->
-        <section class="category" id="Kinematics">
-          <h2>Kinematics</h2>
-          <div class="card" data-title="Projectile Motion" data-category="Kinematics">
-            <a class="card-link" href="gaitcycle/" target="_blank" rel="noopener noreferrer" aria-label="Open Projectile Motion (opens in new tab)">
-              <img src="gaitcycle/thumbnail.png" alt="Thumbnail for Projectile Motion" />
-              <div class="card-content">
-                <h3>Projectile Motion<span class="external-icon">↗</span></h3>
-                <p>Interactive simulation of projectile trajectory — adjust velocity and angle to observe paths.</p>
-              </div>
-            </a>
-          </div>
-        </section>
+    <section id="kinematics" class="category">
+      <h2>Kinematics</h2>
+      <div class="item"><a href="pendulum/index.html">Pendulum Simulation</a></div>
+    </section>
 
-        <!-- Mechanics -->
-        <section class="category" id="Mechanics">
-          <h2>Mechanics</h2>
-          <div class="card" data-title="Pulley System" data-category="Mechanics">
-            <a class="card-link" href="gaitcycle/" target="_blank" rel="noopener noreferrer" aria-label="Open Pulley System (opens in new tab)">
-              <img src="gaitcycle/thumbnail.png" alt="Thumbnail for Pulley System" />
-              <div class="card-content">
-                <h3>Pulley System<span class="external-icon">↗</span></h3>
-                <p>Demonstrates mechanical advantage in pulleys — manipulate rope and load to learn forces.</p>
-              </div>
-            </a>
-          </div>
-        </section>
+    <section id="mechanics" class="category">
+      <h2>Mechanics</h2>
+      <div class="item"><a href="gear/index.html">Gear Interaction Model</a></div>
+    </section>
+  </main>
 
-        <footer class="site-footer" role="contentinfo">
-          <div>© 2025 Interactive Images and Models</div>
-          <div>Built for educational use. For inquiries: <a href="mailto:contact@example.com">contact@example.com</a></div>
-        </footer>
-      </main>
+  <footer>
+    <p>Built for educational use. For inquiries: contact@example.com</p>
+  </footer>
 
-      <aside class="sidebar" aria-label="Sidebar">
-        <div class="search-box" role="search" aria-label="Search content">
-          <input id="q" type="search" placeholder="Search titles or categories..." />
-          <button id="clear">Clear</button>
-        </div>
-
-        <div class="categories-list">
-          <strong style="display:block;margin-bottom:8px">Categories</strong>
-          <ul>
-            <li><a href="#Anatomy">Anatomy</a></li>
-            <li><a href="#Kinematics">Kinematics</a></li>
-            <li><a href="#Mechanics">Mechanics</a></li>
-          </ul>
-        </div>
-
-        <!-- Side ad hidden -->
-        <div class="ad-side">
-          <strong>Advertisement</strong><br />(Sidebar — replace with ad tag)
-        </div>
-
-        <!-- Bottom ad -->
-        <div class="ad-bottom" role="complementary" aria-label="Advertisement (bottom)">
-          <strong>Advertisement</strong><br />(Footer/Bottom ad)
-        </div>
-      </aside>
-    </div>
-  </div>
-
-  <script>
-    (function(){
-      const input = document.getElementById('q');
-      const clearBtn = document.getElementById('clear');
-      const cards = Array.from(document.querySelectorAll('.card'));
-      function normalize(s){ return (s||'').toLowerCase(); }
-      function filter(){
-        const q = normalize(input.value.trim());
-        cards.forEach(card=>{
-          const title = normalize(card.dataset.title);
-          const cat = normalize(card.dataset.category);
-          const matches = q === '' || title.includes(q) || cat.includes(q);
-          card.style.display = matches ? '' : 'none';
-        });
-      }
-      if(input){
-        input.addEventListener('input', filter);
-        clearBtn.addEventListener('click', function(e){ e.preventDefault(); input.value=''; filter(); input.focus(); });
-      }
-    })();
-  </script>
+  <details>
+    <summary>Privacy & Ads Notice</summary>
+    <p>
+      The advertisements displayed on this site are used to help cover operational costs.<br>
+      This site uses cookies to improve user convenience and for ad delivery.<br>
+      Third-party providers may use cookie information to display ads based on users' interests and preferences.
+    </p>
+  </details>
 </body>
 </html>
